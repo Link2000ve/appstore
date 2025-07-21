@@ -68,7 +68,7 @@ def submit():
     """
     # Send email using SendGrid
     try:
-        sg = sendgrid.SendGridAPIClient(api_key=os.environ["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"])
+        sg = sendgrid.SendGridAPIClient(api_key=os.environ["SENDGRID_API_KEY"])
         message = Mail(
             from_email=from_email,
             to_emails=[vendor_email, user_email],
