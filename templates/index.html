@@ -501,7 +501,7 @@
                 </div>
                 <!-- Hero Image (GIF on click) -->
                 <img id="hero-image" src="/static/images/welcome_image.png" alt="Welcome" class="hero-image-placeholder" style="cursor:pointer;" onclick="playWelcomeGif()" />
-                <button class="btn btn-primary" id="start-btn" onclick="startCustomization()">Crear mi cuaderno</button>
+                <button class="btn btn-primary" id="start-btn" onclick="playWelcomeGif()">Crear mi cuaderno</button>
             </div>
         </section>
 
@@ -967,12 +967,12 @@
             var startBtn = document.getElementById('start-btn');
             heroImg.src = '/static/images/welcome_image.gif';
             startBtn.disabled = true;
-            // Wait for gif to play (e.g. 2.5s), then go to next screen
+            // Wait for gif to finish (adjust delay to match gif length)
             setTimeout(function() {
                 startCustomization();
-                heroImg.src = '/static/images/welcome_image.png'; // reset for next time
+                heroImg.src = '/static/images/welcome_image.png'; // reset image for next time
                 startBtn.disabled = false;
-            }, 2500); // Adjust delay to match gif length
+            }, 2500);
         }
         </script>
 </body>
