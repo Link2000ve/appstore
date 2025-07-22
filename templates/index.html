@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notebook Customizer</title>
+    <link rel="icon" type="image/png" href="/static/images/logo.png">
+    <!-- Google Fonts: Pacifico for handwritten style -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,17 +15,36 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Pacifico', cursive;
+            font-size: 1.25rem;
+            background: #f8f5e3 url('/static/images/wallpaper.png') no-repeat center center fixed;
+            background-size: cover;
             min-height: 100vh;
+            color: #4b6043;
+        }
+
+        h1 { font-size: 3.2rem; }
+        h2 { font-size: 2.2rem; }
+        h3 { font-size: 1.7rem; }
+        h4, h5, h6 { font-size: 1.3rem; }
+        .step-title { font-size: 2.2rem; }
+        .step-description { font-size: 1.3rem; }
+        .option-title { font-size: 1.3rem; }
+        .option-description { font-size: 1.1rem; }
+        .btn, .menu-item, .navigation { font-size: 1.25rem; }
+        label, input, select, .section, .main-content, .summary-item, .error-message, .flash-success, .flash-danger { font-size: 1.15rem; }
+
+        h1, h2, h3, h4, h5, h6, .step-title, .step-description, .option-title, .option-description, .summary-label, .summary-value, .btn, .menu-item, .hero p, .navigation, label, input, select, .section, .main-content, .summary-item, .error-message, .flash-success, .flash-danger {
+            font-family: 'Pacifico', cursive !important;
+            color: #4b6043 !important;
         }
 
         /* Header */
         .header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 248, 220, 0.95); /* sand color with opacity */
             backdrop-filter: blur(10px);
             padding: 1rem 2rem;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
             position: fixed;
             top: 0;
             left: 0;
@@ -47,7 +69,7 @@
         .logo-placeholder {
             width: 50px;
             height: 50px;
-            background: #667eea;
+            background: #a3c9a8; /* green */
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -56,11 +78,18 @@
             font-weight: bold;
             font-size: 1.2rem;
         }
+        .logo-image {
+            max-width: 48px;
+            max-height: 48px;
+            object-fit: contain;
+            display: block;
+        }
 
         .store-name {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #333;
+            color: #4b6043; /* deep green */
+            font-family: 'Pacifico', cursive;
         }
 
         /* Menu */
@@ -122,6 +151,8 @@
             font-size: 3rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-family: 'Pacifico', cursive;
+            color: #4b6043;
         }
 
         .hero p {
@@ -133,15 +164,21 @@
         .hero-image-placeholder {
             width: 400px;
             height: 300px;
-            background: rgba(255,255,255,0.2);
-            border: 2px dashed rgba(255,255,255,0.5);
+            object-fit: cover;
             border-radius: 15px;
             margin: 0 auto 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: white;
+            display: block;
+        }
+
+        .hero-title-box {
+            background: rgba(255, 248, 220, 0.5); /* sand color, 50% transparent */
+            border: 3px solid #a3c9a8;
+            border-radius: 20px;
+            padding: 1rem 2.5rem 1rem 2.5rem;
+            margin: 0 auto 2rem auto;
+            max-width: 1200px;
+            box-shadow: 0 4px 16px rgba(163,201,168,0.08);
+            text-align: center;
         }
 
         /* Customization Section */
@@ -182,8 +219,8 @@
         }
 
         .option-tile {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
+            background: #fffbe6;
+            border: 2px solid #e2c799;
             border-radius: 15px;
             padding: 1.5rem;
             text-align: center;
@@ -199,13 +236,13 @@
         }
 
         .option-tile.selected {
-            border-color: #667eea;
-            background: #e8f4fd;
+            border-color: #a3c9a8;
+            background: #e6f4ea;
         }
 
         .option-image-placeholder {
             width: 100px;
-            height: 100px;
+            height: 140px;
             background: #ddd;
             border-radius: 10px;
             margin: 0 auto 1rem;
@@ -247,22 +284,23 @@
         }
 
         .btn-primary {
-            background: #667eea;
-            color: white;
+            background: #a3c9a8; /* green */
+            color: #4b6043; /* deep green */
         }
 
         .btn-primary:hover {
-            background: #5a6fd8;
+            background: #7bb274;
+            color: #fff;
             transform: translateY(-2px);
         }
 
         .btn-secondary {
-            background: #6c757d;
-            color: white;
+            background: #e2c799; /* sand */
+            color: #4b6043;
         }
 
         .btn-secondary:hover {
-            background: #5a6268;
+            background: #d1b07a;
         }
 
         .btn:disabled {
@@ -274,7 +312,7 @@
         .progress-bar {
             width: 100%;
             height: 8px;
-            background: #e9ecef;
+            background: #e2c799;
             border-radius: 4px;
             margin-bottom: 2rem;
             overflow: hidden;
@@ -282,7 +320,7 @@
 
         .progress-fill {
             height: 100%;
-            background: #667eea;
+            background: #a3c9a8;
             transition: width 0.3s ease;
         }
 
@@ -310,7 +348,7 @@
         .summary-item {
             text-align: center;
             padding: 1rem;
-            background: #f8f9fa;
+            background: #fffbe6;
             border-radius: 10px;
         }
 
@@ -334,7 +372,7 @@
         }
 
         .summary-value {
-            color: #667eea;
+            color: #4b6043;
             font-size: 0.9rem;
         }
 
@@ -353,13 +391,52 @@
             .hero h1 {
                 font-size: 2rem;
             }
-            
+            .hero-title-box {
+                max-width: 98vw;
+                padding: 0.7rem 0.5rem 0.7rem 0.5rem;
+                font-size: 1rem;
+            }
+            .main-content {
+                padding: 0.5rem;
+            }
             .options-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
-            
-            .main-content {
-                padding: 1rem;
+            .option-image-placeholder {
+                width: 80vw;
+                max-width: 250px;
+                height: 120px;
+            }
+            .summary-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .btn, .btn-primary, .btn-secondary {
+                width: 100%;
+                font-size: 1.1rem;
+                padding: 0.7rem 0;
+            }
+            form#survey-form > div[style*='grid-template-columns'] {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                max-width: 98vw;
+            }
+            input, select {
+                font-size: 1.1rem;
+                padding: 0.5rem;
+            }
+            .summary-item {
+                padding: 0.7rem;
+            }
+            .hero-image-placeholder {
+                width: 98vw;
+                max-width: 350px;
+                height: 180px;
             }
         }
         .flash-success {
@@ -397,8 +474,10 @@
     <header class="header">
         <div class="header-content">
             <div class="logo-section">
-                <div class="logo-placeholder">N</div>
-                <div class="store-name">Notebook Store</div>
+                <div class="logo-placeholder" style="cursor:pointer;" onclick="showHome()">
+                    <img src="/static/images/logo.png" alt="El Rincon de L'Artesana" class="logo-image">
+                </div>
+                <div class="store-name">El Rincon de L'Artesana</div>
             </div>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         </div>
@@ -406,10 +485,9 @@
 
     <!-- Menu -->
     <nav class="menu" id="menu">
-        <div class="menu-item" onclick="showHome()">Home</div>
-        <div class="menu-item" onclick="showAbout()">About Me</div>
-        <div class="menu-item" onclick="showSamples()">Samples</div>
-        <div class="menu-item" onclick="startCustomization()">Make Your Own Notebook</div>
+        <div class="menu-item" onclick="showHome()">Inicio</div>
+        <div class="menu-item" onclick="showAbout()">Acerca de L'Artesana</div>
+        <div class="menu-item" onclick="showSamples()">Inspirate</div>
     </nav>
 
     <!-- Main Content -->
@@ -417,12 +495,13 @@
         <!-- Home Section -->
         <section id="home-section">
             <div class="hero">
-                <h1>Create Your Perfect Notebook</h1>
-                <p>Design and customize your own handcrafted notebook with our easy-to-use tool</p>
-                <div class="hero-image-placeholder">
-                    Hero Image Placeholder
+                <div class="hero-title-box">
+                    <h1>Inicia aca tu propia coleccion de cuadernos</h1>
+                    <p>Elegi el diseño que mas se adapte a ti en 6 simples pasos</p>
                 </div>
-                <button class="btn btn-primary" onclick="startCustomization()">Start Customizing</button>
+                <!-- Hero Image (GIF on click) -->
+                <img id="hero-image" src="/static/images/welcome_image.png" alt="Welcome" class="hero-image-placeholder" style="cursor:pointer;" onclick="playWelcomeGif()" />
+                <button class="btn btn-primary" id="start-btn" onclick="startCustomization()">Crear mi cuaderno</button>
             </div>
         </section>
 
@@ -435,19 +514,24 @@
             <!-- Step 1: Cover Type -->
             <div class="step" id="step-1">
                 <div class="step-header">
-                    <h2 class="step-title">Choose Your Cover Type</h2>
-                    <p class="step-description">Select the type of cover for your notebook</p>
+                    <h2 class="step-title">Elegi el tipo de portada</h2>
+                    <p class="step-description">Selecciona el tipo de portada para tu cuaderno</p>
                 </div>
                 <div class="options-grid">
                     <div class="option-tile" data-value="paperback" onclick="selectOption(this, 'cover_type')">
-                        <div class="option-image-placeholder">Paperback</div>
-                        <div class="option-title">Paperback</div>
-                        <div class="option-description">Flexible and lightweight</div>
+                        <img src="/static/images/cover_type_paperback.png" alt="Paperback" class="option-image-placeholder" />
+                        <div class="option-title">Portada blanda</div>
+                        <div class="option-description">Flexible y liviana</div>
                     </div>
-                    <div class="option-tile" data-value="hardcover" onclick="selectOption(this, 'cover_type')">
-                        <div class="option-image-placeholder">Hardcover</div>
-                        <div class="option-title">Hardcover</div>
-                        <div class="option-description">Durable and elegant</div>
+                    <div class="option-tile" data-value="Portada dura" onclick="selectOption(this, 'cover_type')">
+                        <img src="/static/images/cover_type_hardcover.png" alt="Portada dura" class="option-image-placeholder" />
+                        <div class="option-title">Portada dura</div>
+                        <div class="option-description">Duradero y elegante</div>
+                    </div>
+                    <div class="option-tile" data-value="Cuero (Bitacoras)" onclick="selectOption(this, 'cover_type')">
+                        <img src="/static/images/cover_type_cuero.png" alt="Cuero (Bitacoras)" class="option-image-placeholder" />
+                        <div class="option-title">Cuero (Bitácoras)</div>
+                        <div class="option-description">Elegante y resistente, ideal para bitácoras</div>
                     </div>
                 </div>
                 <div class="navigation">
@@ -459,19 +543,19 @@
             <!-- Step 2: Binding Type -->
             <div class="step" id="step-2" style="display: none;">
                 <div class="step-header">
-                    <h2 class="step-title">Choose Your Binding</h2>
-                    <p class="step-description">Select how your notebook will be bound</p>
+                    <h2 class="step-title">Elegi la costura de tu cuaderno</h2>
+                    <p class="step-description">Elegi la costura que mas se adapte a tu cuaderno</p>
                 </div>
                 <div class="options-grid">
-                    <div class="option-tile" data-value="copta" onclick="selectOption(this, 'binding_type')">
-                        <div class="option-image-placeholder">Copta</div>
+                    <div class="option-tile" data-value="Copta" onclick="selectOption(this, 'binding_type')">
+                        <img src="/static/images/binding_type_copta.png" alt="Copta" class="option-image-placeholder" />
                         <div class="option-title">Copta</div>
-                        <div class="option-description">Professional binding</div>
+                        <div class="option-description">Costura profesional</div>
                     </div>
-                    <div class="option-tile" data-value="single" onclick="selectOption(this, 'binding_type')">
-                        <div class="option-image-placeholder">Single</div>
-                        <div class="option-title">Single</div>
-                        <div class="option-description">Simple and clean</div>
+                    <div class="option-tile" data-value="Con tiras de soporte" onclick="selectOption(this, 'binding_type')">
+                        <img src="/static/images/con_tiras_de_soporte.png" alt="Con tiras de soporte" class="option-image-placeholder" />
+                        <div class="option-title">Con tiras de soporte</div>
+                        <div class="option-description">Para cuadernos de 100 hojas o más</div>
                     </div>
                 </div>
                 <div class="navigation">
@@ -483,19 +567,19 @@
             <!-- Step 3: Cover Shape -->
             <div class="step" id="step-3" style="display: none;">
                 <div class="step-header">
-                    <h2 class="step-title">Choose Your Cover Shape</h2>
-                    <p class="step-description">Select the shape of your notebook cover</p>
+                    <h2 class="step-title">Elegi la forma de la portada</h2>
+                    <p class="step-description">Selecciona la forma de la portada</p>
                 </div>
                 <div class="options-grid">
                     <div class="option-tile" data-value="flat" onclick="selectOption(this, 'cover_shape')">
-                        <div class="option-image-placeholder">Flat</div>
-                        <div class="option-title">Flat</div>
-                        <div class="option-description">Classic flat design</div>
+                        <img src="/static/images/cover_shape_flat.png" alt="Flat" class="option-image-placeholder" />
+                        <div class="option-title">Plana</div>
+                        <div class="option-description">Diseño clásico</div>
                     </div>
                     <div class="option-tile" data-value="shaped" onclick="selectOption(this, 'cover_shape')">
-                        <div class="option-image-placeholder">Shaped</div>
-                        <div class="option-title">With Shape</div>
-                        <div class="option-description">Unique shaped design</div>
+                        <img src="/static/images/cover_shape_shaped.png" alt="Shaped" class="option-image-placeholder" />
+                        <div class="option-title">Con forma</div>
+                        <div class="option-description">Diseño único</div>
                     </div>
                 </div>
                 <div class="navigation">
@@ -507,25 +591,19 @@
             <!-- Step 4: Number of Pages -->
             <div class="step" id="step-4" style="display: none;">
                 <div class="step-header">
-                    <h2 class="step-title">Choose Number of Pages</h2>
-                    <p class="step-description">Select how many pages you want in your notebook</p>
+                    <h2 class="step-title">Elegi la cantidad de hojas</h2>
+                    <p class="step-description">Selecciona cuántas hojas tendrá tu cuaderno</p>
                 </div>
-                <div class="options-grid">
-                    <div class="option-tile" data-value="50" onclick="selectOption(this, 'pages')">
-                        <div class="option-image-placeholder">50</div>
-                        <div class="option-title">50 Pages</div>
-                        <div class="option-description">Perfect for notes</div>
-                    </div>
-                    <div class="option-tile" data-value="100" onclick="selectOption(this, 'pages')">
-                        <div class="option-image-placeholder">100</div>
-                        <div class="option-title">100 Pages</div>
-                        <div class="option-description">Great for journals</div>
-                    </div>
-                    <div class="option-tile" data-value="200" onclick="selectOption(this, 'pages')">
-                        <div class="option-image-placeholder">200</div>
-                        <div class="option-title">200 Pages</div>
-                        <div class="option-description">Comprehensive notebook</div>
-                    </div>
+                <div style="text-align:center; margin-bottom:2rem;">
+                    <img src="/static/images/pages.png" alt="Cantidad de hojas" class="option-image-placeholder" style="display:inline-block;" />
+                </div>
+                <div style="text-align:center; margin-bottom:2rem;">
+                    <select id="pages-select" class="option-dropdown" style="font-size:1.2rem; padding:0.5rem 1rem; border-radius:8px; border:2px solid #a3c9a8;">
+                        <option value="" disabled selected>Elegí la cantidad de hojas</option>
+                        <option value="40">40 hojas</option>
+                        <option value="50">50 hojas</option>
+                        <option value="70">70 hojas</option>
+                    </select>
                 </div>
                 <div class="navigation">
                     <button class="btn btn-secondary" onclick="previousStep()">Previous</button>
@@ -536,19 +614,19 @@
             <!-- Step 5: Size -->
             <div class="step" id="step-5" style="display: none;">
                 <div class="step-header">
-                    <h2 class="step-title">Choose Your Size</h2>
-                    <p class="step-description">Select the size of your notebook</p>
+                    <h2 class="step-title">Elegi el tamaño</h2>
+                    <p class="step-description">Selecciona el tamaño de tu cuaderno</p>
                 </div>
                 <div class="options-grid">
                     <div class="option-tile" data-value="A5" onclick="selectOption(this, 'size')">
-                        <div class="option-image-placeholder">A5</div>
+                        <img src="/static/images/size_a5.png" alt="A5" class="option-image-placeholder" />
                         <div class="option-title">A5</div>
-                        <div class="option-description">Standard size</div>
+                        <div class="option-description">Tamaño estándar</div>
                     </div>
                     <div class="option-tile" data-value="A6" onclick="selectOption(this, 'size')">
-                        <div class="option-image-placeholder">A6</div>
+                        <img src="/static/images/size_a6.png" alt="A6" class="option-image-placeholder" />
                         <div class="option-title">A6</div>
-                        <div class="option-description">Compact size</div>
+                        <div class="option-description">Tamaño compacto</div>
                     </div>
                 </div>
                 <div class="navigation">
@@ -561,8 +639,8 @@
         <!-- Summary Section -->
         <section id="summary-section" class="summary-section">
             <div class="step-header">
-                <h2 class="step-title">Your Custom Notebook</h2>
-                <p class="step-description">Review your selections and generate your Excel summary</p>
+                <h2 class="step-title">Tu cuaderno personalizado</h2>
+                <p class="step-description">Confirma tu seleccion y completa los datos de contacto</p>
             </div>
             
             <div class="summary-grid" id="summary-grid">
@@ -570,21 +648,21 @@
             </div>
 
             <div class="navigation">
-                <button class="btn btn-secondary" onclick="restartCustomization()">Start Over</button>
+                <button class="btn btn-secondary" onclick="restartCustomization()">Empezar de nuevo</button>
             </div>
 
             <!-- Survey Form -->
             <form id="survey-form" method="POST" action="/submit" style="margin-top:2rem;">
-                <h3 style="text-align:center;">Complete Your Purchase</h3>
+                <h3 style="text-align:center;">Completa tu compra</h3>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:600px;margin:2rem auto;">
-                    <input type="text" name="full_name" placeholder="Full Name" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <input type="text" name="address1" placeholder="Address Line 1" required>
-                    <input type="text" name="address2" placeholder="Address Line 2">
-                    <input type="text" name="country" placeholder="Country" required>
-                    <input type="text" name="city" placeholder="City" required>
-                    <input type="text" name="locality" placeholder="Locality" required>
-                    <input type="text" name="phone" placeholder="Phone Number" required>
+                    <input type="text" name="full_name" placeholder="Nombre completo" required>
+                    <input type="email" name="email" placeholder="Correo electrónico" required>
+                    <input type="text" name="address1" placeholder="Dirección línea 1" required>
+                    <input type="text" name="address2" placeholder="Dirección línea 2">
+                    <input type="text" name="country" placeholder="País" required>
+                    <input type="text" name="city" placeholder="Ciudad" required>
+                    <input type="text" name="locality" placeholder="Localidad" required>
+                    <input type="text" name="phone" placeholder="Teléfono" required>
                 </div>
                 <!-- Hidden fields for notebook selections -->
                 <input type="hidden" name="cover_type" id="hidden_cover_type">
@@ -593,7 +671,7 @@
                 <input type="hidden" name="pages" id="hidden_pages">
                 <input type="hidden" name="size" id="hidden_size">
                 <div style="text-align:center;">
-                    <button type="submit" class="btn btn-primary">Submit Order</button>
+                    <button type="submit" class="btn btn-primary">Enviar pedido</button>
                 </div>
             </form>
             <script>
@@ -645,6 +723,13 @@
             {% endif %}
         </section>
     </main>
+
+    <!-- Instagram Link Footer -->
+    <footer style="text-align:center; margin: 3rem 0 1rem 0;">
+        <a href="https://www.instagram.com/lartesana_av?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="color:#4b6043; font-family:'Pacifico',cursive; font-size:1.3rem; text-decoration:none;">
+            Seguime en Instagram: @lartesana_av
+        </a>
+    </footer>
 
     <script>
         let currentStep = 1;
@@ -728,6 +813,22 @@
             
             // Restore previous selections if they exist
             restoreSelections(step);
+            // Special handling for pages dropdown
+            if (step === 4) {
+                const select = document.getElementById('pages-select');
+                if (select) {
+                    select.value = selections.pages || '';
+                    select.onchange = function() {
+                        selections.pages = this.value;
+                        // Enable next button
+                        const nextButton = document.getElementById('step-4').querySelector('.btn-primary');
+                        nextButton.disabled = false;
+                    };
+                    // Enable/disable next button based on selection
+                    const nextButton = document.getElementById('step-4').querySelector('.btn-primary');
+                    nextButton.disabled = !selections.pages;
+                }
+            }
         }
 
         function restoreSelections(step) {
@@ -742,6 +843,15 @@
                     nextButton.disabled = false;
                 }
             });
+            // Special handling for pages dropdown
+            if (step === 4) {
+                const select = document.getElementById('pages-select');
+                if (select && selections.pages) {
+                    select.value = selections.pages;
+                    const nextButton = document.getElementById('step-4').querySelector('.btn-primary');
+                    nextButton.disabled = false;
+                }
+            }
         }
 
         function getFieldForStep(step) {
@@ -763,25 +873,66 @@
         function populateSummary() {
             const summaryGrid = document.getElementById('summary-grid');
             summaryGrid.innerHTML = '';
-            
             const summaryItems = [
-                { label: 'Cover Type', value: selections.cover_type, field: 'cover_type' },
-                { label: 'Binding', value: selections.binding_type, field: 'binding_type' },
-                { label: 'Cover Shape', value: selections.cover_shape, field: 'cover_shape' },
-                { label: 'Pages', value: selections.pages, field: 'pages' },
-                { label: 'Size', value: selections.size, field: 'size' }
+                { label: 'Tipo de portada', value: selections.cover_type, field: 'cover_type', img: getSummaryImage('cover_type', selections.cover_type) },
+                { label: 'Costura', value: selections.binding_type, field: 'binding_type', img: getSummaryImage('binding_type', selections.binding_type) },
+                { label: 'Forma de portada', value: selections.cover_shape, field: 'cover_shape', img: getSummaryImage('cover_shape', selections.cover_shape) },
+                { label: 'Hojas', value: selections.pages, field: 'pages', img: getSummaryImage('pages', selections.pages) },
+                { label: 'Tamaño', value: selections.size, field: 'size', img: getSummaryImage('size', selections.size) }
             ];
-            
             summaryItems.forEach(item => {
                 const summaryItem = document.createElement('div');
                 summaryItem.className = 'summary-item';
                 summaryItem.innerHTML = `
-                    <div class="summary-thumbnail">${item.value}</div>
+                    <div class="summary-thumbnail"><img src="${item.img}" alt="${item.value}" style="width:60px;height:60px;object-fit:contain;border-radius:8px;"></div>
                     <div class="summary-label">${item.label}</div>
                     <div class="summary-value">${item.value}</div>
                 `;
                 summaryGrid.appendChild(summaryItem);
             });
+        }
+
+        function getSummaryImage(field, value) {
+            // Map Spanish/English/option values to filenames
+            const map = {
+                cover_type: {
+                    'Portada blanda': '/static/images/cover_type_paperback.png',
+                    'paperback': '/static/images/cover_type_paperback.png',
+                    'Portada dura': '/static/images/cover_type_hardcover.png',
+                    'hardcover': '/static/images/cover_type_hardcover.png',
+                    'Cuero (Bitacoras)': '/static/images/cover_type_cuero.png',
+                    'cuero': '/static/images/cover_type_cuero.png'
+                },
+                binding_type: {
+                    'Copta': '/static/images/binding_type_copta.png',
+                    'copta': '/static/images/binding_type_copta.png',
+                    'Con tiras de soporte': '/static/images/con_tiras_de_soporte.png',
+                    'single': '/static/images/binding_type_single.png'
+                },
+                cover_shape: {
+                    'Plana': '/static/images/cover_shape_flat.png',
+                    'flat': '/static/images/cover_shape_flat.png',
+                    'Con forma': '/static/images/cover_shape_shaped.png',
+                    'shaped': '/static/images/cover_shape_shaped.png'
+                },
+                pages: {
+                    '40 hojas': '/static/images/pages.png',
+                    '40': '/static/images/pages.png',
+                    '50 hojas': '/static/images/pages.png',
+                    '50': '/static/images/pages.png',
+                    '70 hojas': '/static/images/pages.png',
+                    '70': '/static/images/pages.png'
+                },
+                size: {
+                    'A5': '/static/images/size_a5.png',
+                    'A6': '/static/images/size_a6.png'
+                }
+            };
+            if (map[field] && map[field][value]) {
+                return map[field][value];
+            }
+            // fallback
+            return '/static/images/placeholder.png';
         }
 
         function restartCustomization() {
@@ -809,6 +960,20 @@
 
         // Initialize
         updateProgress();
-    </script>
+        </script>
+        <script>
+        function playWelcomeGif() {
+            var heroImg = document.getElementById('hero-image');
+            var startBtn = document.getElementById('start-btn');
+            heroImg.src = '/static/images/welcome_image.gif';
+            startBtn.disabled = true;
+            // Wait for gif to play (e.g. 2.5s), then go to next screen
+            setTimeout(function() {
+                startCustomization();
+                heroImg.src = '/static/images/welcome_image.png'; // reset for next time
+                startBtn.disabled = false;
+            }, 2500); // Adjust delay to match gif length
+        }
+        </script>
 </body>
 </html>

@@ -1,7 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, jsonify
 import os
+from dotenv import load_dotenv
 import sendgrid
 from sendgrid.helpers.mail import Mail
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'dev')
@@ -39,21 +43,22 @@ def submit():
         "locality": request.form.get("locality"),
         "phone": request.form.get("phone")
     }
-    # Prepare email content
+    # Prepare email content with notebook selections in HTML table
     subject = "New Notebook Order"
     vendor_email = "link2000ve@gmail.com"
     user_email = user["email"]
-    from_email = os.environ.get("ORDER_SENDER_EMAIL", "noreply@notebookstore.com")
+    from_email = os.environ.get("ORDER_SENDER_EMAIL", "link2000ve@gmail.com")
     html_content = f"""
     <h2>New Notebook Order</h2>
     <h3>Notebook Details</h3>
-    <ul>
-        <li><b>Cover Type:</b> {notebook['cover_type']}</li>
-        <li><b>Binding Type:</b> {notebook['binding_type']}</li>
-        <li><b>Cover Shape:</b> {notebook['cover_shape']}</li>
-        <li><b>Pages:</b> {notebook['pages']}</li>
-        <li><b>Size:</b> {notebook['size']}</li>
-    </ul>
+    <table border='1' cellpadding='6' cellspacing='0' style='border-collapse:collapse;'>
+        <tr><th>Field</th><th>Selection</th></tr>
+        <tr><td>Cover Type</td><td>{notebook['cover_type']}</td></tr>
+        <tr><td>Binding Type</td><td>{notebook['binding_type']}</td></tr>
+        <tr><td>Cover Shape</td><td>{notebook['cover_shape']}</td></tr>
+        <tr><td>Pages</td><td>{notebook['pages']}</td></tr>
+        <tr><td>Size</td><td>{notebook['size']}</td></tr>
+    </table>
     <h3>User Details</h3>
     <ul>
         <li><b>Full Name:</b> {user['full_name']}</li>
@@ -79,6 +84,8 @@ def submit():
         # Return JSON for JS pop-up
         return jsonify({"success": True, "message": "Your order has been submitted successfully, please check your inbox."})
     except Exception as e:
+        import traceback
+        print(traceback.format_exc())
         return jsonify({"success": False, "message": f"There was an error sending your order: {e}"}), 500
 
 if __name__ == "__main__":
